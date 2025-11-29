@@ -50,11 +50,6 @@ public class TugasModul07 extends JFrame {
     panel.add(new JLabel(""));
     panel.add(btnSimpan);
     
-     //button reset
-    JButton btnReset = new JButton("Reset");
-    panel.add(new JLabel(""));
-    panel.add(btnReset);
-    
     //Event Handling Tombol Simpan
     btnSimpan.addActionListener(new ActionListener(){
         @Override
@@ -62,6 +57,11 @@ public class TugasModul07 extends JFrame {
             prosesSimpan();
         }
     });
+    
+    //button reset
+    JButton btnReset = new JButton("Reset");
+    panel.add(new JLabel(""));
+    panel.add(btnReset);
     
     //Memanggil fungsi button reset
     btnReset.addActionListener(e -> {
@@ -99,12 +99,18 @@ public class TugasModul07 extends JFrame {
         
     return panel;
 }
-    private void prosesSimpan(){
     
+    //Logika Validasi dan Penyimpanan Data
+    private void prosesSimpan(){
+        
+        //1. Ambil data dari input
         String nama = txtNama.getText();
         String matkul = (String) cmbMatkul.getSelectedItem();
         String strNilai = txtNilai.getText();
         
+        //2. VALIDASI INPUT
+    
+        // validasi 1: Cek apakah nama kosong
         if (nama.trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Nama tidak boleh kosong!",
                     "Error Validasi", JOptionPane.ERROR_MESSAGE);
@@ -115,6 +121,7 @@ public class TugasModul07 extends JFrame {
             return;
         }
         
+        //validasi 2: Cek apakah nilai berupa angka dan dalam range valid
         int nilai;
         try {
             nilai = Integer.parseInt(strNilai);
@@ -129,7 +136,8 @@ public class TugasModul07 extends JFrame {
             return;
         }
     
-    //Switch case
+    //3. Logika Bisnis (Menentukan Grade)
+    //  SWITCH CASE UNTUK GRADE    
     int rangeNilai = nilai / 10;
     String grade;
         
@@ -159,9 +167,11 @@ public class TugasModul07 extends JFrame {
             break;
         }
         
+        //4. Menentukan ke Tabel (Update Model)
         Object[] dataBaris = {nama, matkul, nilai, grade};
         tableModel.addRow(dataBaris);
         
+         //5. Reset Form dan Pindah Tab
         txtNama.setText("");
         txtNilai.setText("");
         cmbMatkul.setSelectedIndex(0);
@@ -181,16 +191,21 @@ public class TugasModul07 extends JFrame {
     }
     
     public TugasModul07(){
+        
+    //1. Konfigurasi Frame Utama
     setTitle("Aplikasi Manajemen Nilai Siswa");
     setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
+        //2. Inisialisasi Tabbed Pane
         tabbedPane = new JTabbedPane();
         
+        //3. Membuat Panel utnuk Tab 1 (Form Input)
         JPanel panelInput = createInputPanel();
         tabbedPane.addTab("Input Data", panelInput);
     
+        //4. Membuat Panel untuk tab 2 (Tabel Data)
         JPanel panelTabel = createTablePanel();
         tabbedPane.addTab("Daftar Nilai", panelTabel);
         
