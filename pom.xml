@@ -10,4 +10,5 @@
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>id.ac.unpas.pp2_c_233040120.PP2_C_233040120</exec.mainClass>
     </properties>
+    <name>PP2_2025_233040120_C</name>
 </project>
