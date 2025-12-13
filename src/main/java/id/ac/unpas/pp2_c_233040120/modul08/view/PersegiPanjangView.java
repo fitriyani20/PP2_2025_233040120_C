@@ -44,8 +44,6 @@ public class PersegiPanjangView extends JFrame {
         this.add(new JLabel("Keliling"));
         this.add(lblKeliling);
         
-        //this.add(new JLabel(""));// Scaper kosong
-        //this.add(btnHitung);
         
         this.add(btnHasil);
         this.add(btnReset);
@@ -79,11 +77,6 @@ public class PersegiPanjangView extends JFrame {
         }
         
         
-        //Menampilkan hasil ke Label
-        //public void setHasil(double hasil){
-        //    lblHasil.setText(String.valueOf(hasil));
-        //}
-        
         //Menampilkan pesan error (Jika input bukan angka)
         public void tampilkanPesanError(String pesan) {
             JOptionPane.showMessageDialog(this, pesan);
@@ -104,6 +97,3 @@ public class PersegiPanjangView extends JFrame {
    
 
     
-        
-      
-
